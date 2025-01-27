@@ -1,5 +1,6 @@
 import customtkinter
 from pegar_moedas import nomes_moedas, conversoes_disponiveis
+from pegar_cotacoes import pegar_cotacao_moeda
 
 # Criar e configurar janela
 customtkinter.set_appearance_mode("System")  # Modes: system (default), light, dark
@@ -24,12 +25,19 @@ campo_moeda_de_origem = customtkinter.CTkOptionMenu(janela, values=list(dic_conv
 campo_moeda_de_destino = customtkinter.CTkOptionMenu(janela, values=["Selecione a moeda de origem"],)
 
 def converter_moedas():
-    print("Converter")
+    moeda_origem = campo_moeda_de_origem.get()
+    moeda_destino = campo_moeda_de_destino.get()
+
+    if moeda_origem and moeda_destino:
+        cotacao = pegar_cotacao_moeda
+        texto_cotacao.configure(text=f"1 {moeda_origem} = {cotacao(moeda_origem, moeda_destino)} {moeda_destino}")
 
 botao_converter = customtkinter.CTkButton(janela, text="Converter", command=converter_moedas)
 
 # Scrollable Frame para listar moedas
 lista_de_moedas = customtkinter.CTkScrollableFrame(janela)
+
+texto_cotacao = customtkinter.CTkLabel(janela, text="")
 
 # Obter dicionário de moedas disponíveis
 moedas_disponiveis = nomes_moedas()
@@ -46,6 +54,7 @@ campo_moeda_de_origem.pack(padx=10)
 texto_moeda_de_destino.pack(padx=10, pady=3)
 campo_moeda_de_destino.pack(padx=10)
 botao_converter.pack(padx=10, pady=10)
+texto_cotacao.pack(padx=10, pady=10)
 lista_de_moedas.pack(padx=10, pady=10)
 
 # Rodar Janela
