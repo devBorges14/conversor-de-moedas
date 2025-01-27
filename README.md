@@ -40,4 +40,4 @@ Além disso, o código utiliza módulo internos do Python, como ````os````.
    ````bash python main.py````
 
 - <a href="https://docs.awesomeapi.com.br/api-de-moedas">API da Awesome<a>
-  -<a href="https://github.com/TomSchimansky/CustomTkinter">CustomTkinter .doc<a>
+  - <a href="https://github.com/TomSchimansky/CustomTkinter">CustomTkinter .doc<a>
